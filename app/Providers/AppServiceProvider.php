@@ -52,7 +52,7 @@ class AppServiceProvider extends ServiceProvider
                 'submenu' => [
                     [
                         'text' => 'Laporan Barang Masuk',
-                        'url'  => '#',
+                        'url'  => 'laporanmasuk',
                     ],
                     [
                         'text'    => 'Laporan Barang Keluar',

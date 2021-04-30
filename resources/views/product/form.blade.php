@@ -23,7 +23,7 @@
 </div>
 <div class="form-group">
  <label for="merek" class="col-sm-2 control-label">Merek</label>
- <div class="col-sm-10">
+    <div class="col-sm-10">
         <select name="brands_id" class="form-control">
             @foreach($brand as $item)
                 <option value="{{ $item->id }}" {{ ( ($brands_id??'')==$item->id) ? 'selected' : '' }}>

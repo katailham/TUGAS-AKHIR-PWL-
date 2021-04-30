@@ -7,13 +7,12 @@ use App\Models\Product;
 use App\Models\Brand; 
 use App\Models\Categorie;
 use Illuminate\Support\Facades\Storage;
-use Hash; 
 
 class ProductController extends Controller
 {
     public function index() 
     { 
-        $data =Product::paginate(10); 
+        $data =Product::paginate(10);
         $categorie = Categorie::all();
         $brand = Brand::all();
         foreach ($data as $item) { 
@@ -110,5 +109,17 @@ class ProductController extends Controller
     { 
         $dataProduct = Product::findOrFail($product); 
         $dataProduct->delete(); 
+    } 
+
+    public function laporanmasuk() 
+    { 
+        $data = Product::paginate(10); 
+        foreach ($data as $item) { 
+            $item->product = Product::find($item->id); 
+            $item->brand = Brand::find($item->id); 
+            $item->Categorie = categorie::find($item->id); 
+        } 
+        $tampil['data'] = $data; 
+        return view("product.laporanmasuk", $tampil);
     } 
 }

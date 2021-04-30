@@ -73,14 +73,6 @@
     @section('plugins.Sweetalert2', true)
     @section('plugins.Pace', true)
     @section('js')
-    @if (session('success'))
-        <script type="text/javascript">
-            Swal.fire(
-                'Sukses!',
-                '{{ session('success') }}', 'success'
-            )
-        </script>
-    @endif
         <script type="text/javascript">
             function hapus(id){
                 Swal.fire({
@@ -88,8 +80,8 @@
                     text: "Yakin menghapus data ini?",
                     icon: 'warning',
                     showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#dd3333',
+                    confirmButtonColor: '#3085d1',
+                    cancelButtonColor: '#dd2222',
                     confirmButtonText: 'Hapus',
                     cancelButtonText: 'Batal',
                 }).then((result) => {

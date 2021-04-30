@@ -1,10 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Controllers\KelasController;
-use App\Http\Controllers\SiswaController;
-
 use Illuminate\Http\Request;
+use App\Models\User; 
+use App\Models\Product; 
+use App\Models\Brand; 
+use App\Models\Categorie;
+use App\Models\Transaksi;
+use Illuminate\Support\Facades\Storage;
+
 
 class HomeController extends Controller
 {
@@ -25,6 +29,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $data =Product::paginate(10); 
+        $transaksi = Transaksi::all();
+        $categorie = Categorie::all();
+        $brand = Brand::all();
+        foreach ($data as $item) { 
+            $item->brand = Brand::find($item->brands_id); 
+            $item->categorie = Categorie::find($item->categories_id);  
+        } 
+        $tampil['data'] = $data; 
+
+        return view("home", compact('data', 'categorie', 'brand', 'transaksi'));
     }
 }

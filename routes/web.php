@@ -35,7 +35,7 @@ Route::group([ 'middleware' => 'auth' ], function () {
     Route::resource('categorie', 'CategorieController');
     Route::resource('user', 'UserController');
     Route::resource('transaksi', 'TransaksiController');
-    Route::get('/history', 'TransaksiController@history');
+    Route::get('/laporanmasuk', 'ProductController@laporanmasuk');
     Route::get('/laporan', function () {
     return view('laporan');
     });

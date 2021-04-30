@@ -20,4 +20,8 @@ class Product extends Model
     public function brands(){
         return $this->belongsTo(Brand::class);
     }
+
+    public function transaksis(){
+        return $this->hasMany(Transaksi::class);
+    }
 } 
