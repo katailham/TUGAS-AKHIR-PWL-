@@ -6,7 +6,6 @@ class transaksi extends Model
     protected $primaryKey = 'id';
     protected $fillable = [ 
         'id',
-        'tgl_bayar',
         'product_id',
         'jumlah',
     ]; 

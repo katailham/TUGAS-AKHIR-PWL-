@@ -1,31 +1,49 @@
 {{ csrf_field() }}
 <div class="form-group">
- <label for="tgl_bayar" class="col-sm-2 control-label">Tanggal Bayar</label>
- <div class="col-sm-3">
- <input type="text" name="tgl_bayar" id="tgl_bayar" class="form-control" value="{{ $tgl_bayar ?? '' }}" >
- </div>
+    <label for="nama" class="col-sm-2 control-label">Nama Lengkap</label>
+    <div class="col-sm-10">
+    <input type="text" name="name" id="name" class="form-control" value="{{ $name ?? '' }}" >
+    </div>
 </div>
 <div class="form-group">
- <label for="id_kelas" class="col-sm-2 control-label">Siswa</label>
- <div class="col-sm-10">
- <select name="nisn" class="form-control">
- @foreach($siswa as $item)
- <option value="{{ $item->nisn }}" {{ ( ($nisn??'')==$item->nisn) ? 'selected' : '' }}>
-{{ $item->options }}
-</option>
- @endforeach 
- </select>
- </div>
+    <label for="kategori" class="col-sm-2 control-label">Kategori</label>
+    <div class="col-sm-10">
+        <select name="categories_id" class="form-control">
+            @foreach($categorie as $item)
+                <option value="{{ $item->id }}" {{ ( ($categories_id??'')==$item->id) ? 'selected' : '' }}>
+                {{ $item->name}}
+            </option>
+            @endforeach
+        </select>
+    </div>
 </div>
 <div class="form-group">
- <label for="jumlah_bayar" class="col-sm-2 control-label">Jumlah Bayar</label>
- <div class="col-sm-5">
- <input type="number" name="jumlah_bayar" class="form-control" value="{{ $jumlah_bayar ?? '' }}">
- </div>
+ <label for="merek" class="col-sm-2 control-label">Merek</label>
+    <div class="col-sm-10">
+        <select name="brands_id" class="form-control">
+            @foreach($brand as $item)
+                <option value="{{ $item->id }}" {{ ( ($brands_id??'')==$item->id) ? 'selected' : '' }}>
+                {{ $item->name}}
+            </option>
+            @endforeach
+        </select>
+    </div>
+</div>
+<div class="form-group">
+    <label for="alamat" class="col-sm-2 control-label">Harga</label>
+    <div class="col-sm-10">
+        <input type="number" name="harga" id="harga" class="form-control" value="{{ $harga ?? '' }}" >
+    </div>
+</div>
+<div class="form-group">
+    <label for="alamat" class="col-sm-2 control-label">Jumlah</label>
+    <div class="col-sm-10">
+        <input type="number" name="qty" id="qty" class="form-control" value="{{ $qty ?? '' }}" >
+    </div>
 </div>
 <div class="form-group">
  <div class="col-sm-offset-2 col-sm-10">
- <input type="submit" class="btn btn-success btn-md" name="simpan" value="Simpan">
- <a href="{{ route('pembayaran.index') }}" class="btn btn-primary" role="button">Batal</a>
+ <input type="submit" class="btn btn-success btn-md ml-auto" name="simpan" value="Simpan">
+ <a href="{{ route('product.index') }}" class="btn btn-primary ml-auto" role="button">Batal</a>
  </div>
 </div>
