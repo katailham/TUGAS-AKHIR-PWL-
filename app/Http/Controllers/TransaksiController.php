@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\Transaksi; 
 use App\Models\Product;
 use Illuminate\Support\Facades\Storage;
+use PDF; 
 
 class TransaksiController extends Controller
 {
@@ -87,5 +88,16 @@ class TransaksiController extends Controller
         $tampil['data'] = $data; 
 
         return view("transaksi.laporankeluar", compact('data','product'));
+    } 
+
+    public function cetakBarangKeluar(Request $request) { 
+        $data = Transaksi::get();
+        $product = Product::get();
+        foreach ($data as $item) { 
+            $item->product = Product::find($item->products_id);  
+        } 
+        $tampil['data'] = $data;  
+        $pdf = PDF::loadView("transaksi.cetakpdf", compact('data','product')); 
+        return $pdf->download('Laporan_barang_keluar.pdf'); 
     } 
 }

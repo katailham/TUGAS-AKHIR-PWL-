@@ -4,6 +4,9 @@
         <h1 class="m-0 text-dark">Laporan Barang Masuk</h1>
 @stop
 @section('content')
+<a class="btn btn-app" href="laporanmasuk/cetak">
+ <i class="fas fa-file-pdf"></i>Laporan Barang Masuk.Pdf
+ </a>
 <div class="row">
     <div class="col-12">
         <div class="card">

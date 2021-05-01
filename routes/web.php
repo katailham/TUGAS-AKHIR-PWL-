@@ -37,12 +37,6 @@ Route::group([ 'middleware' => 'auth' ], function () {
     Route::resource('transaksi', 'TransaksiController');
     Route::get('/laporanmasuk', 'ProductController@laporanmasuk');
     Route::get('/laporankeluar', 'TransaksiController@laporankeluar');
-    Route::get('/laporan', function () {
-    return view('laporan');
-    });
-    route::get('/laporan/kelas', 'LaporanController@kelas');
-    route::get('/laporan/spp', 'LaporanController@spp');
-    route::get('/laporan/siswa', 'LaporanController@siswa');
-    route::get('/laporan/petugas', 'LaporanController@petugas');
-    route::get('/laporan/pembayaran', 'LaporanController@pembayaran');
+    route::get('/laporanmasuk/cetak', 'ProductController@cetakBarangMasuk');
+    route::get('/laporankeluar/cetak', 'TransaksiController@cetakBarangKeluar');
    });

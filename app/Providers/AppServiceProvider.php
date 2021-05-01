@@ -27,12 +27,12 @@ class AppServiceProvider extends ServiceProvider
             [
                 'text' => 'Pengelolaan Barang',
                 'url' => 'product',
-                'icon' => 'fas fa-fw fa-users'
+                'icon' => 'fas fa-fw fa-file'
             ],
             [
                 'text' => 'Kategori Barang',
                 'url' => 'categorie',
-                'icon' => 'fas fa-fw fa-building'
+                'icon' => 'fas fa-fw fa-bars'
             ],
             [
                 'text' => 'Merek Barang',
@@ -48,7 +48,7 @@ class AppServiceProvider extends ServiceProvider
             ],
             [
                 'text'    => 'Laporan',
-                'icon'    => 'fas fa-fw fa-archive',
+                'icon'    => 'fas fa-fw fa-file-pdf',
                 'submenu' => [
                     [
                         'text' => 'Laporan Barang Masuk',

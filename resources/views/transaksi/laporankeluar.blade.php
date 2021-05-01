@@ -1,9 +1,12 @@
 @extends('adminlte::page')
-@section('title', 'Barang Masuk')
+@section('title', 'Barang Keluar')
 @section('content_header')
-        <h1 class="m-0 text-dark">Laporan Barang Masuk</h1>
+        <h1 class="m-0 text-dark">Laporan Barang Keluar</h1>
 @stop
 @section('content')
+<a class="btn btn-app" href="laporankeluar/cetak">
+ <i class="fas fa-file-pdf"></i>Laporan Barang Keluar.Pdf
+ </a>
 <div class="row">
     <div class="col-12">
         <div class="card">

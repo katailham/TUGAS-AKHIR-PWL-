@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Brand; 
 use App\Models\Categorie;
 use Illuminate\Support\Facades\Storage;
+use PDF; 
 
 class ProductController extends Controller
 {
@@ -121,5 +122,12 @@ class ProductController extends Controller
         } 
         $tampil['data'] = $data; 
         return view("product.laporanmasuk", $tampil);
+    } 
+
+    public function cetakBarangMasuk(Request $request) { 
+        $data = Product::get(); 
+        $tampil['data'] = $data; 
+        $pdf = PDF::loadView("product.cetakpdf", $tampil); 
+        return $pdf->download('Laporan_barang_masuk.pdf'); 
     } 
 }
