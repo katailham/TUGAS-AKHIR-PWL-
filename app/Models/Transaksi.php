@@ -1,11 +1,13 @@
 <?php 
 namespace App\Models; 
 use Illuminate\Database\Eloquent\Model; 
-class transaksi extends Model 
+class Transaksi extends Model 
 { 
     protected $primaryKey = 'id';
     protected $fillable = [ 
-        'id',
+        'name',
+        'alamat',
+        'no_telp',
         'product_id',
         'jumlah',
     ]; 

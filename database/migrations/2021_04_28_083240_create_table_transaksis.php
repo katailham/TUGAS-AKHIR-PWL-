@@ -18,12 +18,11 @@ class CreateTableTransaksis extends Migration
             $table->string('name');
             $table->string('alamat');
             $table->bigInteger('no_telp');
-            $table->bigInteger('product_id')->unsigned(); 
-            $table->string('validasi');
+            $table->bigInteger('products_id')->unsigned(); 
             $table->integer('jumlah'); 
             $table->timestamps(); 
             //menambahkan relasi  
-            $table->foreign('product_id')->references('id')->on('products'); 
+            $table->foreign('products_id')->references('id')->on('products'); 
         });
     }
 

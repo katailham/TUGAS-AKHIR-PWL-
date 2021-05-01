@@ -1,31 +1,27 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
-use App\Models\User; 
-use App\Models\transaksi; 
-use App\Models\Brand; 
-use App\Models\Categorie;
+use Illuminate\Http\Request; 
+use App\Models\Transaksi; 
+use App\Models\Product;
 use Illuminate\Support\Facades\Storage;
 
-class transaksiController extends Controller
+class TransaksiController extends Controller
 {
     public function index() 
     { 
-        $data =transaksi::paginate(10);
-        $transaksi = Transaksi::all();
+        $data = Transaksi::all();
+        $product = Product::all();
         foreach ($data as $item) { 
-            $item->brand = Brand::find($item->brands_id); 
-            $item->categorie = Categorie::find($item->categories_id);  
+            $item->product = Product::find($item->products_id);  
         } 
         $tampil['data'] = $data; 
-
-        return view("transaksi.index", compact('data', 'transaksi'));
+        return view("transaksi.index", compact('data', 'product'));
     } 
 
     public function create() 
     { 
-        $data['transaksi'] = Transaksi::get(); 
+        $data['product'] = Product::get();
         return view("transaksi.create",$data); 
     } 
 
@@ -34,66 +30,62 @@ class transaksiController extends Controller
         $transaksi = new Transaksi;
 
         $transaksi->name = $request->get('name');
-        $transaksi->categories_id = $request->get('categories_id');
-        $transaksi->brands_id = $request->get('brands_id');
-        $transaksi->harga = $request->get('harga');
-        $transaksi->qty = $request->get('qty');
+        $transaksi->alamat = $request->get('alamat');
+        $transaksi->no_telp = $request->get('no_telp');
+        $transaksi->products_id = $request->get('products_id');
+        $transaksi->jumlah = $request->get('jumlah');
         
         $transaksi->save();
         return redirect()->route("transaksi.index")->with( 
             "success", 
             "Data berhasil disimpan." 
         ); 
- } 
-    public function show($transaksi) 
+    } 
+    
+    public function show($kela) 
     { 
     // 
     } 
-
+    
     public function edit($transaksi) 
+    {     
+        $data = Transaksi::findOrFail($transaksi);
+        $data['role'] = Role::get();  
+            return view('transaksi.edit', $data); 
+        } 
+    public function update(Request $request, $user) 
     { 
-        $data = transaksi::findOrFail($transaksi); 
-        $data->brand = Brand::get(); 
-        $data->categorie = categorie::get();
-        $data->categorie = categorie::get();
+        $transaksi = Transaksi::findOrFail($transaksi); 
 
-        return view("transaksi.edit", $data); 
-    } 
-    public function update(Request $request, $transaksi) 
-    { 
-        $transaksi = transaksi::findOrFail($transaksi); 
-        if ($request->hasFile('photo')) {
-            $extension = $request->file('photo')->extension();
-
-            $filename = 'photo_barang_'.time().'.'.$extension;
-
-            $request->file('photo')->storeAs(
-                'public/photo_barang', $filename
-            );
-
-            Storage::delete('public/photo_barang/'.$request->get('old_photo'));
-
-            $transaksi->photo = $filename;
-        }
         $transaksi->name = $request->get('name');
-        $transaksi->categories_id = $request->get('categories_id');
-        $transaksi->brands_id = $request->get('brands_id');
-        $transaksi->harga = $request->get('harga');
-        $transaksi->qty = $request->get('qty');
+        $transaksi->alamat = $request->get('alamat');
+        $transaksi->no_telp = $request->get('no_telp');
+        $transaksi->product_id = $request->get('product_id');
+        $transaksi->jumlah = $request->get('jumlah');
 
         
 
         $transaksi->save();
-        
         return redirect()->route("transaksi.index")->with( 
-        "success", 
-        "Data berhasil diubah." 
-    ); 
+            "success", 
+            "Data berhasil diubah." 
+        ); 
     } 
-    
     public function destroy($transaksi) 
     { 
-        $datatransaksi = transaksi::findOrFail($transaksi); 
+        $datatransaksi = Transaksi::findOrFail($transaksi); 
         $datatransaksi->delete(); 
+    } 
+
+    public function laporankeluar() 
+    { 
+        $data =Transaksi::paginate(10);
+        $product = Product::all();
+        foreach ($data as $item) { 
+            $item->product = Product::find($item->products_id); 
+        } 
+        $tampil['data'] = $data; 
+
+        return view("transaksi.laporankeluar", compact('data','product'));
     } 
 }

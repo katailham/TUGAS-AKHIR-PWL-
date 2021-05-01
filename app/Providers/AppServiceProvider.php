@@ -56,7 +56,7 @@ class AppServiceProvider extends ServiceProvider
                     ],
                     [
                         'text'    => 'Laporan Barang Keluar',
-                        'url'     => '#',
+                        'url'     => 'laporankeluar',
                     ],
                 ],
             ],
